@@ -1,0 +1,14 @@
+{
+    "proseWrap": "preserve",
+    "semi": false,
+    "singleQuote": true,
+    "overrides": [
+      {
+        "files": "*.ejs",
+        "options": {
+          "parser": "html"
+        }
+      }
+    ]
+  }
+  
