@@ -4,34 +4,34 @@ import Users from '../components/manageUsers/Users'
 import { Switch, Route } from 'react-router-dom'
 import PrivateRoutes from './privateRoute'
 const AppRoutes = () => {
-  /**
-   * quản lý theo đường link
-   */
-  const Project = () => {
+    /**
+     * quản lý theo đường link
+     */
+    const Project = () => {
+        return (
+            <>
+                <span>projects</span>
+            </>
+        )
+    }
     return (
-      <>
-        <span>projects</span>
-      </>
+        <>
+            <Switch>
+                <PrivateRoutes path="/users" component={Users} />
+                <PrivateRoutes path="/projects" component={Project} />
+                <Route path="/login">
+                    <Login />
+                </Route>
+                <Route path="/register">
+                    <Register />
+                </Route>
+                <Route path="/" exact>
+                    Home
+                </Route>
+                <Route path="*">404 not found</Route>
+            </Switch>
+        </>
     )
-  }
-  return (
-    <>
-      <Switch>
-        <PrivateRoutes path="/users" component={Users} />
-        <PrivateRoutes path="/projects" component={Project} />
-        <Route path="/login">
-          <Login />
-        </Route>
-        <Route path="/register">
-          <Register />
-        </Route>
-        <Route path="/" exact>
-          Home
-        </Route>
-        <Route path="*">404 not found</Route>
-      </Switch>
-    </>
-  )
 }
 
 export default AppRoutes

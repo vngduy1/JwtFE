@@ -1,5 +1,5 @@
 const LeaderRoute = () => {
-  return <></>
+    return <></>
 }
 
 export default LeaderRoute
