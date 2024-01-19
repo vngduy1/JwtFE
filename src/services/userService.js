@@ -27,4 +27,19 @@ const fetchAllUser = (page, limit) => {
     `http://localhost:8081/api/v1/user/read?page=${page}&limit=${limit}`,
   )
 }
-export { registerNewUser, loginUser, fetchAllUser, deleteUser }
+
+const fetchGroup = () => {
+  return axios.get(`http://localhost:8081/api/v1/group/read`)
+}
+
+const createNewUser = (userData) => {
+  return axios.post('http://localhost:8081/api/v1/user/create', { ...userData })
+}
+export {
+  registerNewUser,
+  loginUser,
+  fetchAllUser,
+  deleteUser,
+  fetchGroup,
+  createNewUser,
+}

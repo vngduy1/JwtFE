@@ -4,18 +4,23 @@ import { toast } from 'react-toastify'
 
 import { deleteUser, fetchAllUser } from '../../services/userService'
 import ModalDelete from './modalDelete'
+import ModalUser from './modalUser'
 const Users = () => {
   const [listUser, setListUser] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
-  const currentLimit = 2
+  const currentLimit = 3
   const [totalPages, setTotalPages] = useState(0)
 
   const [isShowModalDelete, setIsShowModalDelete] = useState(false)
   const [dataModal, setDataModal] = useState({})
 
+  const [showAddUser, setShowAddUser] = useState(false)
+  const handleCloseAddUser = () => setShowAddUser(false)
+  const handleShowAddUser = () => setShowAddUser(true)
   useEffect(() => {
     fetchUsers()
-  }, [currentPage])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const fetchUsers = async (page) => {
     let response = await fetchAllUser(currentPage, currentLimit)
@@ -60,7 +65,12 @@ const Users = () => {
             </div>
             <div className="actions">
               <button className="btn btn-success">Refresh</button>
-              <button className="btn btn-primary">Add new user</button>
+              <button
+                className="btn btn-primary"
+                onClick={() => handleShowAddUser()}
+              >
+                Add new user
+              </button>
             </div>
           </div>
           <div className="user-body">
@@ -112,7 +122,7 @@ const Users = () => {
               </tbody>
             </table>
           </div>
-          {totalPages > 0 && (
+          {totalPages > 1 && (
             <div className="user-footer">
               <ReactPaginate
                 nextLabel="next >"
@@ -144,6 +154,11 @@ const Users = () => {
         handleClose={handleClose}
         confirmDeleteUser={confirmDeleteUser}
         dataModal={dataModal}
+      />
+      <ModalUser
+        title={'new user'}
+        show={showAddUser}
+        handleClose={handleCloseAddUser}
       />
     </>
   )
