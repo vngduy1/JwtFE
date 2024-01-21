@@ -31,6 +31,17 @@ const Users = () => {
 
   useEffect(() => {
     fetchUsers()
+
+    //get all get all the cookies from the browser
+    // let c = document.cookie
+    //   .split(';')
+    //   .reduce(
+    //     (ac, cv, i) =>
+    //       Object.assign(ac, { [cv.split('=')[0]]: cv.split('=')[1] }),
+    //     {},
+    //   )
+    // console.log(c)
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage])
 
