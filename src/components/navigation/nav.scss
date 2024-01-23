@@ -23,3 +23,37 @@ body {
     color: white;
   }
 }
+
+.nav-header {
+  .header {
+    background-color: #20232a !important;
+  }
+
+  .brand-name {
+    color: #61dafb;
+  }
+
+  a,
+  .nav-link {
+    color: white;
+
+    &:hover {
+      color: #61dafb;
+    }
+  }
+
+  .nav-link {
+    &.active,
+    &.show {
+      color: #61dafb !important;
+    }
+  }
+
+  .dropdown-item {
+    color: #212529;
+  }
+
+  .navbar-toggler {
+    background-color: #61dafb !important;
+  }
+}

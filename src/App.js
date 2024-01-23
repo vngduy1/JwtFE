@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 // import _ from 'lodash'
-import Nav from './components/navigation/nav'
+import NavHeader from './components/navigation/nav'
 import AppRoutes from './routes/appRoute'
 import { Rings } from 'react-loader-spinner'
 import { UserContext } from './context/UserContext'
@@ -29,7 +29,7 @@ function App() {
         ) : (
           <>
             <div className="app-header">
-              <Nav />
+              <NavHeader />
             </div>
             <div className="app-container">
               <AppRoutes />
