@@ -49,6 +49,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "react-loader-spinner": "^5.1.0"
+    "react-loader-spinner": "^5.1.0",
+    "uuid": "^8.3.2"
   }
 }
