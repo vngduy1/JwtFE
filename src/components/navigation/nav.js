@@ -26,19 +26,23 @@ const NavHeader = (props) => {
     }
   }
 
-  if ((user && user.isAuthenticated === true) || location.pathname === '/') {
+  if (
+    (user && user.isAuthenticated === true) ||
+    location.pathname === '/' ||
+    location.pathname === 'about'
+  ) {
     return (
       <>
         <div className="nav-header">
           <Navbar expand="lg" className="header bg-body-tertiary" bg="header">
             <Container>
-              <Navbar.Brand href="#home">
+              <Navbar.Brand>
                 <img
                   src={logo}
                   width="30"
                   height="30"
                   className="d-inline-block align-top"
-                  alt="React Bootstrap logo"
+                  alt="React logo"
                 />
                 <span className="brand-name">DVN</span>
               </Navbar.Brand>

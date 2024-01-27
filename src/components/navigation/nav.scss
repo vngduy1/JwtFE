@@ -46,6 +46,7 @@ body {
     &.active,
     &.show {
       color: #61dafb !important;
+      border-bottom: 2px solid;
     }
   }
 

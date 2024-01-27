@@ -1,6 +1,6 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import './login.scss'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -8,7 +8,7 @@ import { loginUser } from '../../services/userService'
 import { UserContext } from '../../context/UserContext'
 
 const Login = (props) => {
-  const { loginContext } = useContext(UserContext)
+  const { user, loginContext } = useContext(UserContext)
   let history = useHistory()
 
   const [valueLogin, setValueLogin] = useState('')
@@ -62,6 +62,13 @@ const Login = (props) => {
       toast.error(response.EM)
     }
   }
+
+  useEffect(() => {
+    if (user && user.isAuthenticated === true) {
+      history.push('/users')
+    }
+  }, [history, user])
+
   return (
     <div className="login-container">
       <div className="container">
@@ -128,6 +135,10 @@ const Login = (props) => {
                 新しいアカウントを作成
               </button>
             </div>
+            <Link to="/" className="text-center">
+              <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
+              <span>Return To Home</span>
+            </Link>
           </div>
         </form>
       </div>
