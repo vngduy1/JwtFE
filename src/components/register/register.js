@@ -1,15 +1,17 @@
 import './register.scss'
 import { useHistory } from 'react-router-dom'
 // import axios from "axios";
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 import { registerNewUser } from '../../services/userService'
+import { UserContext } from '../../context/UserContext'
 
 const Register = (props) => {
   // const [firstName, setFirstName] = useState("");
   // const [lastName, setLastName] = useState("");
+  const { user } = useContext(UserContext)
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
   const [username, setUserName] = useState('')
@@ -87,6 +89,12 @@ const Register = (props) => {
       }
     }
   }
+
+  useEffect(() => {
+    if (user && user.isAuthenticated) {
+      history.push('/')
+    }
+  }, [history, user])
 
   return (
     <div className="register-container">
