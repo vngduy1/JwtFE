@@ -4,7 +4,11 @@ import _ from 'lodash'
 
 import './GroupRole.scss'
 import { fetchGroup } from '../../services/userService'
-import { fetchAllRoles, fetchRoleByGroup } from '../../services/roleService'
+import {
+  fetchAllRoles,
+  fetchRoleByGroup,
+  assignRoleToGroup,
+} from '../../services/roleService'
 
 const GroupRole = () => {
   const [userGroup, setUserGroup] = useState([])
@@ -74,6 +78,31 @@ const GroupRole = () => {
     setAssignRoleByGroup(_assignRoleByGroup)
   }
 
+  const buildDataToSave = () => {
+    let result = {}
+    const _assignRoleByGroup = _.cloneDeep(assignRoleByGroup)
+    result.groupId = selectGroup
+    let groupRolesFilter = _assignRoleByGroup.filter(
+      (item) => item.isAssigned === true,
+    )
+    let finalGroupRoles = groupRolesFilter.map((item) => {
+      let data = { groupId: +selectGroup, roleId: +item.id }
+      return data
+    })
+    result.groupRoles = finalGroupRoles
+    return result
+  }
+
+  const handleSave = async () => {
+    let data = buildDataToSave()
+    let res = await assignRoleToGroup(data)
+    if (res && res.EC === 0) {
+      toast.success(res.EM)
+    } else {
+      toast.error(res.EM)
+    }
+  }
+
   return (
     <>
       <div className="group-role-container">
@@ -129,7 +158,12 @@ const GroupRole = () => {
                       )
                     })}
                   <div className="mt-3">
-                    <button className="btn btn-warning">保存</button>
+                    <button
+                      className="btn btn-warning"
+                      onClick={() => handleSave()}
+                    >
+                      保存
+                    </button>
                   </div>
                 </div>
               )}
